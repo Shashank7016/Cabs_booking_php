@@ -1,0 +1,24 @@
+1) Query for creating customers table
+CREATE TABLE customers (
+    email VARCHAR(255) PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    password VARCHAR(255) NOT NULL, -- Ideally, store hashed password
+    phone_number VARCHAR(15) NOT NULL
+);
+
+2) Query for creating bookings table
+CREATE TABLE bookings (
+    booking_number INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255),
+    passenger_name VARCHAR(100) NOT NULL,
+    contact_phone VARCHAR(15) NOT NULL,
+    unit_number VARCHAR(10) NULL,
+    street_number VARCHAR(10) NOT NULL,
+    street_name VARCHAR(100) NOT NULL,
+    suburb VARCHAR(50) NOT NULL,
+    destination_suburb VARCHAR(50) NOT NULL,
+    pickup_datetime DATETIME NOT NULL,
+    booking_datetime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    status VARCHAR(50) NOT NULL DEFAULT 'unassigned',
+    FOREIGN KEY (email) REFERENCES customers(email)
+);
